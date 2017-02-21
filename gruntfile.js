@@ -87,6 +87,18 @@ module.exports = function(grunt) {
                         cwd: 'node_modules/pixi.js/dist/',
                         src: [ 'pixi.min.js' ],
                         dest: 'build/js/depen/'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'src/bump-master/bin/',
+                        src: [ 'bump.js' ],
+                        dest: 'build/js/depen/'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'src/tink-master/bin/',
+                        src: [ 'tink.js' ],
+                        dest: 'build/js/depen/'
                     }
                 ]
             }

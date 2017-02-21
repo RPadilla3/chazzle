@@ -89,6 +89,8 @@
     // Custom Globals
     // additional predefined global variables
     "globals"       : {
-        "PIXI": true
+        "PIXI": true,
+        "Graphics": true,
+        "Tink": true
     }
 }
