@@ -15,7 +15,7 @@
         renderer = autoDetectRenderer($(window).width(), $(window).height());
     $('body')[0].appendChild(renderer.view);
 
-    var red1, state, t, pointer;
+    var rectangle, red1, state, t, pointer, b;
 
     renderer.view.style.position = "absolute";
     renderer.view.style.display = "block";
@@ -33,12 +33,12 @@
     function setup() {
 
       //Create the `cat` sprite, add it to the stage, and render it
-      var cat = new Sprite(resources["images/board.png"].texture);
-      cat.scale.set(0.4,0.4);
-      cat.position.set(($(window).outerWidth()/2)-(cat.width/2),($(window).outerHeight()/2)-(cat.height/2));
-      stage.addChild(cat);
+      var gameboard = new Sprite(resources["images/board.png"].texture);
+      gameboard.scale.set(0.4,0.4);
+      gameboard.position.set(($(window).outerWidth()/2)-(gameboard.width/2),($(window).outerHeight()/2)-(gameboard.height/2));
+      stage.addChild(gameboard);
 
-      var rectangle = new Graphics();
+      rectangle = new Graphics();
       rectangle.beginFill(0x0033CC);
       rectangle.lineStyle(4, 0xFF0000, 1);
       rectangle.drawRect(0, 0, 48, 48);
@@ -73,6 +73,11 @@
 
       pointer = t.makePointer();
 
+      b = new Bump(PIXI);
+
+      //b.hit(rectangle, red1, true);
+
+      //console.log(b.hit(cat, red1));
 
       //Call the `gameLoop` function once to get it started
       gameLoop();
@@ -94,16 +99,6 @@
         //     console.log("The pointer was tapped");
         // };
 
-        if (pointer.hitTestSprite(red1)) {
-            //Display a hand icon while the pointer is over the sprite
-            pointer.cursor = "pointer";
-        }
-        else {
-            //Display the default arrow icon when the
-            //pointer moves outside the sprite's area
-            pointer.cursor = "auto";
-        }
-
         state();
 
         t.update();
@@ -115,5 +110,20 @@
     function play(){
         //Move the sprite 1 pixel per frame
         //red1.x += 1;
+
+        if (b.hit(red1, rectangle, true)) {
+            console.log("hit");
+        }
+
+        if (pointer.hitTestSprite(red1)) {
+            //Display a hand icon while the pointer is over the sprite
+            pointer.cursor = "pointer";
+        }
+        else {
+            //Display the default arrow icon when the
+            //pointer moves outside the sprite's area
+            pointer.cursor = "auto";
+        }
+
     }
 }());

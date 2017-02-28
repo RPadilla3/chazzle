@@ -91,6 +91,7 @@
     "globals"       : {
         "PIXI": true,
         "Graphics": true,
-        "Tink": true
+        "Tink": true,
+        "Bump": true
     }
 }
